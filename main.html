@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Simple Interest Calculator</title>
+       
+    </head>
+    <style>
+        body {
+            background-color:black;
+            font-family:arial;
+            color:white
+        }
+        h1{
+            color:grey;
+            font-family:verdana}
+        
+        .maindiv {
+        background-color:white;
+        color:black;
+        width:300px;
+        padding:20px;
+        border-radius:25px;
+        align-items:center
+        }
+    </style>
+    
+    <body>
+    <div class="maindiv">
+        <h1>Simple Interest Calculator</h1>
+
+        Amount <input type="number"  id="principal">  <br/>
+        Rate <input type="range"  id="rate" min="1" max="20" value="10.25" step=0.25 oninput="updateRate()"> 
+        <span id="rate_val" >
+         10.25%
+         </span>
+        <br/>
+        No. of Years <select id="years">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+
+        </select> <br/>
+        Interest : <span id="result"></span><br>
+
+        <button onclick="compute()">Compute Interest</button>
+        <span id="result">
+        </span>
+    </div>
+    <script>
+        function compute()
+    {
+        var principal = document.getElementById("principal").value;
+        var rate = document.getElementById("rate").value;
+        console.log(principal)
+        var years = document.getElementById("years").value;
+        if (principal == "") { 
+            alert("Amount can't by empty or alphabet character");
+            document.getElementById("principal").focus();
+            return false;
+        }else{
+            if (principal <= 0) { 
+                alert("Enter a positive number");
+                document.getElementById("principal").focus();
+                return false;
+            }
+        }
+        var amount = (principal * years * rate) /100;
+        var year = new Date().getFullYear()+parseInt(years);
+        var result= document.getElementById("result").innerHTML="If you deposit "+principal+",\<br\>at an interest rate of "+rate+"%\<br\>You will receive an amount of "+amount+",\<br\>in the year "+year+"\<br\>"
+    }
+        function updateRate() 
+        {
+            var rateval = document.getElementById("rate").value;
+            console.log(rateval)
+            document.getElementById("rate_val").innerText=rateval;
+        }
+        </script>
+    </body>
+</html>
